@@ -21,28 +21,6 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
 
-    <script type="text/javascript">
-
-      var Ko = 4;
-      var Ki = 120;
-      var No = 145;
-      var Ni = 15;
-      var alfa = .05;
-      var Vm = 0;
-      var play = false ;
-      var globalID;
-
-      setInterval(function() {
-        console.log(update())
-      }, 1000/60);
-
-      function update() {
-        return (61.5 * Math.log10((Ko + (alfa * No)) / (Ki + (alfa *Ni))));
-      }
-
-
-
-
-    </script>
+    <script src="main.js" type="text/javascript">  </script>
   </body>
 </html>
