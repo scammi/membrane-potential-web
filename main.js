@@ -12,7 +12,6 @@ var globalID;
 //   vm.push(update());
 // }, 1000/120);
 
-
 function update() {
   return (61.5 * Math.log10((Ko + (alfa * No)) / (Ki + (alfa *Ni))));
 }
@@ -24,12 +23,26 @@ function setup() {
 
 function draw() {
   // Set the background to black and turn off the fill color
-  background(0);
   vm.push(update());
+
+  background(0);
+  noFill();
+
+  beginShape();
+
   stroke(255);
-  console.log(vm)
-  for(var i = 0; 1< vm.lenght; i++){
-    var y = map(vm[i],0,1,height,0);
-    point(i,y);
+  for(var i = 0; i < width; i++){
+    vertex( i, -1*vm[i])
+  }
+
+  endShape();
+
+  if (vm.length > width){
+    vm.splice(0,1);
   }
 }
+
+$('button').on('click', function(){
+  Ko = Ko +3;
+  console.log('a')
+})
