@@ -9,10 +9,10 @@ var play = false ;
 var globalID;
 
 // setInterval(function() {
-//   vm.push(update());
+//   vm.push(vm_update());
 // }, 1000/120);
 
-function update() {
+function vm_update() {
   return (61.5 * Math.log10((Ko + (alfa * No)) / (Ki + (alfa *Ni))));
 }
 
@@ -23,7 +23,7 @@ function setup() {
 
 function draw() {
   // Set the background to black and turn off the fill color
-  vm.push(update());
+  vm.push(vm_update());
 
   background(0);
   noFill();
