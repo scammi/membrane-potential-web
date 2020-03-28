@@ -5,8 +5,6 @@ var No = 145;
 var Ni = 15;
 var alfa = .05;
 var vm = [];
-var play = false ;
-var globalID;
 
 // setInterval(function() {
 //   vm.push(vm_update());
@@ -19,11 +17,15 @@ function vm_update() {
 function setup() {
   // Sets the screen to be 720 pixels wide and 400 pixels high
   createCanvas(720, 400);
+
 }
 
 function draw() {
   // Set the background to black and turn off the fill color
   vm.push(vm_update());
+  translate(0, 100)
+
+  $('#vm-display').html(vm[vm.length - 1])
 
   background(0);
   noFill();
@@ -32,7 +34,7 @@ function draw() {
 
   stroke(255);
   for(var i = 0; i < width; i++){
-    vertex( i, -1*vm[i])
+    vertex( i, vm[i])
   }
 
   endShape();
@@ -42,7 +44,6 @@ function draw() {
   }
 }
 
-$('button').on('click', function(){
-  Ko = Ko +3;
-  console.log('a')
+$('button').on('click', ()=>{
+  Ko = Ko + 1;
 })
