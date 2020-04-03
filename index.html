@@ -15,15 +15,48 @@
     .center {
       text-align: center;
     }
+    .custom-range {
+      width: 60%;
+      align-self: center
+    }
   </style>
   <body>
 
-    <div class="container">
-      <h1 class="center" id="vm-display"></h1>
-      <div class="center" id="chart"></div>
-      <label for="customRange1">Ko</label>
-      <input type="range" class="custom-range center" min="0" max="10" step="0.1" id="krange" >
+    <div class="container-fluid">
+      <div class="col" style="">
 
+        <h1 class="center">
+          Vm:
+          <span id="vm-display"> </span>
+        </h1>
+
+        <div class="center" id="chart"></div>
+
+        <div class="ranger-container d-flex flex-column">
+          <label class="center" for="krange">
+            Ko
+            <span id="ko-val"></span>
+          </label>
+          <input type="range" class="custom-range center" min="0" max="15" step="1" id="ko-ranger" >
+          <label class="center" for="krange">
+            Ki:
+            <span id="ki-val"></span>
+          </label>
+          <input type="range" class="custom-range center" min="0" max="20" step="2" id="ki-ranger" >
+          <label class="center" for="krange">
+            No:
+            <span  id="no-val"></span>
+          </label>
+          <input type="range" class="custom-range center" min="1" max="300" step="2" id="no-ranger" >
+          <label class="center" for="krange">
+            Ni:
+            <span id="ni-val"></span>
+          </label>
+          <input type="range" class="custom-range center" min="0" max="20" step="2" id="ni-ranger" >
+
+        </div>
+
+      </div>
     </div>
 
 

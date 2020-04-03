@@ -15,28 +15,23 @@
 
   function setup() {
     // Sets the screen to be 720 pixels wide and 400 pixels high
-
     let graph = createCanvas(720, 400);
     graph.parent('#chart');
-
   }
 
   function draw() {
-
     vm.push(vm_update());
-    // Ko = $('#krange').val()
 
-    translate(0, 130)
-    $('#vm-display').html(vm[vm.length - 1])
+    translate(0, 130);
+    $('#vm-display').html((vm[vm.length - 1]).toFixed(2));
 
     background(240);
     noFill();
 
     beginShape();
-
     stroke(0);
     for(var i = 0; i < width; i++){
-      vertex( i, vm[i])
+      vertex( i, vm[i]);
     }
 
     endShape();
@@ -48,12 +43,23 @@
     drawGrid();
     fill(0);
 
+    ion_update();
   }
 
-  $('#krange').on('change', ()=>{
-    Ko = $('#krange').val();
-  })
+  function ion_update(){
+    Ko = $('#ko-ranger').val();
+    $('#ko-val').html(Ko);
 
+    Ki = $('#ki-ranger').val();
+    $('#ki-val').html(Ki);
+
+    No = $('#no-ranger').val();
+    $('#no-val').html(No);
+
+    Ni = $('#ni-ranger').val()
+    $('#ni-val').html(Ni);
+  }
+    //Draws graph background
   function drawGrid() {
   	stroke(200);
   	fill(120);
@@ -66,3 +72,16 @@
   		text(y, 1, y+12);
   	}
   }
+
+  // function resize_canvas(){
+  //   canvas = document.getElementById("canvas");
+  //   if (canvas.width  < window.innerWidth)
+  //   {
+  //       canvas.width  = window.innerWidth;
+  //   }
+  //
+  //   if (canvas.height < window.innerHeight)
+  //   {
+  //       canvas.height = window.innerHeight;
+  //   }
+  // }
