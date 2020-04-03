@@ -15,7 +15,7 @@
 
   function setup() {
     // Sets the screen to be 720 pixels wide and 400 pixels high
-    let graph = createCanvas(720, 400);
+    let graph = createCanvas((windowWidth * .5), (windowHeight * .3));
     graph.parent('#chart');
   }
 
@@ -69,7 +69,7 @@
   	}
   	for (var y=-height; y < height; y+=40) {
   		line(-width, y, width, y);
-  		text(y, 1, y+12);
+  		text((y).toFixed(0), 1, y+12);
   	}
   }
 
