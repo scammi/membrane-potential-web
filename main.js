@@ -1,9 +1,8 @@
-  $('#krange').val(4)
   var Ko = 4;
   var Ki = 120;
   var No = 145;
   var Ni = 15;
-  var alfa = .05;
+  var alfa = .5;
   var vm = [];
 
   // setInterval(function() {
@@ -15,7 +14,7 @@
 
   function setup() {
     // Sets the screen to be 720 pixels wide and 400 pixels high
-    let graph = createCanvas((windowWidth * .5), (windowHeight * .3));
+    let graph = createCanvas((windowWidth * .8), (windowHeight * .3));
     graph.parent('#chart');
   }
 
