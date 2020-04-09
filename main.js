@@ -2,7 +2,7 @@
   var Ki = 120;
   var No;
   var Ni = 15;
-  var alfa = .5;
+  var alfa = .05;
   var vm = [];
 
   // setInterval(function() {
