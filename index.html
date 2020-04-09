@@ -10,59 +10,59 @@
     <title>Membrane potential simulator!</title>
   </head>
   <style media="screen">
+    .val {
+      font-weight: bold;
+    }
     .center {
       text-align: center;
     }
     .custom-range {
-      width: 40%;
-      align-self: center
+      width: 100%;
     }
-  @media (max-width: 575.98px) {
-    .custom-range {
-      width: 90%;
-  }
-
-
+    @media (max-width: 575.98px) {
+      .custom-range {
+        width: 90%;
+    }
 
   </style>
   <body>
-
+  <!-- As a heading -->
+  <nav class="navbar navbar-light bg-light">
+    <span class="navbar-brand mb-0 h1">MpSim</span>
+  </nav>
     <div class="container-fluid">
-      <div class="col" style="">
+      <div class="row justify-content-center">
+        <div clas="col-6">
+          <div class="card mt-4">
+          <div class="card-header"> Vm: <span class="val" id="vm-display"></div>
+            <div class="card-body">
+              <div class="center" id="chart"></div>
+            </div>
 
-        <h1 class="center pt-5">
-          Vm:
-          <span id="vm-display"> </span>
-        </h1>
+            <div class="card-footer bg-transparent">
+            <div>
+              <div>
+                <h6 for="krange">
+                  Extracellular potassium:
+                  <span class="val" id="ko-val"></span>
+                </h6>
+                <input type="range" class="custom-range center" min="0" max="15" step="1" id="ko-ranger" value="4">
+              </div>
+              <div>
+                <h6 for="krange">
+                Extracellular potassium:
+                  <span class="val" id="no-val"></span>
+                </h6>
+                <input type="range" class="custom-range center" min="100" max="290" step="2" id="no-ranger" value="135">
+              </div>
+            </div>
 
-        <div class="center" id="chart"></div>
 
-        <div class="ranger-container d-flex flex-column">
-          <label class="center" for="krange">
-            Ko:
-            <span id="ko-val"></span>
-          </label>
-          <input type="range" class="custom-range center" min="0" max="15" step="1" id="ko-ranger" value="4">
-          <label class="center" for="krange">
-            Ki:
-            <span id="ki-val"></span>
-          </label>
-          <input type="range" class="custom-range center" min="80" max="150" step="2" id="ki-ranger" value="120">
-          <label class="center" for="krange">
-            No:
-            <span  id="no-val"></span>
-          </label>
-          <input type="range" class="custom-range center" min="100" max="290" step="2" id="no-ranger" value="145">
-          <label class="center" for="krange">
-            Ni:
-            <span id="ni-val"></span>
-          </label>
-          <input type="range" class="custom-range center" min="0" max="20" step="2" id="ni-ranger" value="15">
-
+            </div>
+          </div>
         </div>
-
       </div>
-    </div>
+  </div>
 
 
 

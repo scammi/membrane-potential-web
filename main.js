@@ -1,6 +1,6 @@
-  var Ko = 4;
+  var Ko;
   var Ki = 120;
-  var No = 145;
+  var No;
   var Ni = 15;
   var alfa = .5;
   var vm = [];
@@ -14,11 +14,12 @@
 
   function setup() {
     // Sets the screen to be 720 pixels wide and 400 pixels high
-    let graph = createCanvas((windowWidth * .8), (windowHeight * .3));
+    let graph = createCanvas((windowWidth * .4), (windowHeight * .4));
     graph.parent('#chart');
   }
 
   function draw() {
+    ion_update();
     vm.push(vm_update());
 
     translate(0, 130);
@@ -41,24 +42,17 @@
 
     drawGrid();
     fill(0);
-
-    ion_update();
   }
 
   function ion_update(){
     Ko = $('#ko-ranger').val();
     $('#ko-val').html(Ko);
 
-    Ki = $('#ki-ranger').val();
-    $('#ki-val').html(Ki);
-
     No = $('#no-ranger').val();
     $('#no-val').html(No);
-
-    Ni = $('#ni-ranger').val()
-    $('#ni-val').html(Ni);
   }
-    //Draws graph background
+
+  //Draws graph background
   function drawGrid() {
   	stroke(200);
   	fill(120);
@@ -71,16 +65,3 @@
   		text((y).toFixed(0), 1, y+12);
   	}
   }
-
-  // function resize_canvas(){
-  //   canvas = document.getElementById("canvas");
-  //   if (canvas.width  < window.innerWidth)
-  //   {
-  //       canvas.width  = window.innerWidth;
-  //   }
-  //
-  //   if (canvas.height < window.innerHeight)
-  //   {
-  //       canvas.height = window.innerHeight;
-  //   }
-  // }
