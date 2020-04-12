@@ -10,56 +10,81 @@
     <title>Membrane potential simulator!</title>
   </head>
   <style media="screen">
+    #depolarize_text {
+      text-align: right;
+    }
+    #chart{
+      width: 600px;
+    }
+    #ko-ranger{
+      margin-bottom: 1rem;
+    }
     .val {
       font-weight: bold;
-    }
-    .center {
-      text-align: center;
     }
     .custom-range {
       width: 100%;
     }
-    @media (max-width: 575.98px) {
-      .custom-range {
-        width: 90%;
+    body{
+      background-color: #EEEEEE;
     }
 
+    @media (max-width: 600px) {
+      #chart{
+        width: 100%;
+      }
+      #depolarize_text {
+        padding-right: 0.5rem ;
+      }
+      .card-body {
+        padding: 0rem !important;
+      }
+      .card{
+        width:95%;
+      }
+      .navbar-header {
+          float: left;
+          text-align: center;
+          width: 100%;
+      }
+      .navbar-brand {float:none;}
+    }
   </style>
   <body>
   <!-- As a heading -->
-  <nav class="navbar navbar-light bg-light">
-    <span class="navbar-brand mb-0 h1">MpSim</span>
+  <nav class="navbar navbar-light shadow-sm bg-white rounded" >
+      <div class="navbar-header">
+        <span class="navbar-brand mb-0 h1">MpSim</span>
+
+      </div>
   </nav>
     <div class="container-fluid">
       <div class="row justify-content-center">
-        <div clas="col-6">
-          <div class="card mt-4">
-            <div class="card-header"> Vm: <span class="val" id="vm-display"></div>
+        <div class="card mt-4 shadow rounded">
+          <div class="card-header bg-transparent"> Vm: <span class="val" id="vm-display"></div>
 
-            <div class="card-body">
-
-              <div class="center" id="chart"></div>
-              <p class="card-text" style="text-aling:right"><small class="text-muted"> *Tap to depolarize/polarize membrane</small></p>
-            </div>
-
-            <div class="card-footer bg-transparent">
-              <div>
-                <h6 for="krange">
-                  Extracellular potassium:
-                  <span class="val" id="ko-val"></span>
-                </h6>
-                <input type="range" class="custom-range " min="0" max="15" step="1" id="ko-ranger" value="4">
-              </div>
-              <div>
-                <h6 for="krange">
-                Extracellular sodium:
-                  <span class="val" id="no-val"></span>
-                </h6>
-                <input type="range" class="custom-range " min="50" max="199" step="1" id="no-ranger" value="135">
-              </div>
-            </div>
-
+          <div class="card-body">
+            <div id="chart"></div>
+            <p id="depolarize_text" class="card-text"><small class="text-muted"> *Tap to depolarize/polarize membrane</small></p>
           </div>
+
+          <div class="card-footer bg-transparent">
+            <div class="mt-2 mb-2">
+              <h6 for="krange">
+                Extracellular potassium:
+                <span class="val" id="ko-val"></span>
+              </h6>
+              <input type="range" class="custom-range " min="0" max="15" step="1" id="ko-ranger" value="4">
+            </div>
+            <div class="mt-2 mb-2">
+              <h6 for="krange">
+              Extracellular sodium:
+                <span class="val" id="no-val"></span>
+              </h6>
+              <input type="range" class="custom-range " min="50" max="199" step="1" id="no-ranger" value="135">
+            </div>
+          </div>
+
         </div>
       </div>
   </div>

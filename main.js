@@ -7,7 +7,7 @@
 
   function setup() {
     // Sets the screen to be 720 pixels wide and 400 pixels high
-    let graph = createCanvas((windowWidth * .4), (windowHeight * .4));
+    let graph = createCanvas(($('#chart').width()), (windowHeight * .4));
     graph.mouseClicked(actionPotential);
 
     graph.parent('#chart');
