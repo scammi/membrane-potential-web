@@ -51,46 +51,43 @@
     }
   </style>
   <body>
-  <!-- As a heading -->
-  <nav class="navbar navbar-light shadow-sm bg-white rounded" >
-      <div class="navbar-header">
-        <span class="navbar-brand mb-0 h1">MpSim</span>
-
-      </div>
-  </nav>
-    <div class="container-fluid">
-      <div class="row justify-content-center">
-        <div class="card mt-4 shadow rounded">
-          <div class="card-header bg-transparent"> Vm: <span class="val" id="vm-display"></div>
-
-          <div class="card-body">
-            <div id="chart"></div>
-            <p id="depolarize_text" class="card-text"><small class="text-muted"> *Tap to depolarize/polarize membrane</small></p>
-          </div>
-
-          <div class="card-footer bg-transparent">
-            <div class="mt-2 mb-2">
-              <h6 for="krange">
-                Extracellular potassium:
-                <span class="val" id="ko-val"></span>
-              </h6>
-              <input type="range" class="custom-range " min="0" max="15" step="1" id="ko-ranger" value="4">
-            </div>
-            <div class="mt-2 mb-2">
-              <h6 for="krange">
-              Extracellular sodium:
-                <span class="val" id="no-val"></span>
-              </h6>
-              <input type="range" class="custom-range " min="50" max="199" step="1" id="no-ranger" value="135">
-            </div>
-          </div>
+    <!-- As a heading -->
+    <nav class="navbar navbar-light shadow-sm bg-white rounded" >
+        <div class="navbar-header">
+          <span class="navbar-brand mb-0 h1">MpSim</span>
 
         </div>
-      </div>
-  </div>
+    </nav>
+      <div class="container-fluid">
+        <div class="row justify-content-center">
+          <div class="card mt-4 shadow rounded">
+            <div class="card-header bg-transparent"> Vm: <span class="val" id="vm-display"></div>
 
+            <div class="card-body">
+              <div id="chart"></div>
+              <p id="depolarize_text" class="card-text"><small class="text-muted"> *Tap to depolarize/polarize membrane</small></p>
+            </div>
 
+            <div class="card-footer bg-transparent">
+              <div class="mt-2 mb-2">
+                <h6 for="krange">
+                  Extracellular potassium:
+                  <span class="val" id="ko-val"></span>
+                </h6>
+                <input type="range" class="custom-range " min="0" max="15" step="1" id="ko-ranger" value="4">
+              </div>
+              <div class="mt-2 mb-2">
+                <h6 for="krange">
+                Extracellular sodium:
+                  <span class="val" id="no-val"></span>
+                </h6>
+                <input type="range" class="custom-range " min="50" max="199" step="1" id="no-ranger" value="135">
+              </div>
+            </div>
 
+          </div>
+        </div>
+    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -98,6 +95,86 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
-    <script src="main.js" type="text/javascript">  </script>
+    <script type="text/javascript">
+      var Ko;
+      var Ki = 120;
+      var No;
+      var Ni = 15;
+      var alfa = .05;
+      var vm = [];
+
+      function setup() {
+        // Sets the screen to be 720 pixels wide and 400 pixels high
+        let graph = createCanvas(($('#chart').width()), (windowHeight * .4));
+        graph.mouseClicked(actionPotential);
+
+        graph.parent('#chart');
+      }
+
+      function draw() {
+        ion_update();
+        vm.push(vm_update());
+
+        translate(0, 130);
+        $('#vm-display').html((vm[vm.length - 1]).toFixed(2));
+
+        background(240);
+        noFill();
+
+        beginShape();
+        stroke(0);
+        for(var i = 0; i < width; i++){
+          vertex( i, vm[i]);
+        }
+
+        endShape();
+
+        if (vm.length > width){
+          vm.splice(0,1);
+        }
+
+        drawGrid();
+        fill(0);
+      }
+
+      function vm_update() {
+        return (61.5 * Math.log10((Ko + (alfa * No)) / (Ki + (alfa *Ni))));
+      }
+
+      function ion_update(){
+        Ko = $('#ko-ranger').val();
+        $('#ko-val').html(Ko);
+
+        No = $('#no-ranger').val();
+        $('#no-val').html(No);
+      }
+
+      function actionPotential(){
+        if (alfa < 0.9) {
+          for (x = 0.01; x < 4; x = x + 0.001){
+            alfa = 1 / (1 + Math.exp(-x));
+          }
+        }
+        else {
+          alfa = 0.05;
+        }
+      }
+
+      //Draws graph background
+      function drawGrid() {
+      	stroke(200);
+      	fill(120);
+      	for (var x=-width; x < width; x+=40) {
+      		line(x+1, -height, x, height);
+      		//text(x, x+1, 12);
+      	}
+      	for (var y=-height; y < height; y+=40) {
+      		line(-width, y, width, y);
+      		text((y).toFixed(0), 1, y+12);
+      	}
+      }
+
+
+     </script>
   </body>
 </html>
