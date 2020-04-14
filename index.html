@@ -96,15 +96,15 @@
 
     <script src="https://cdn.jsdelivr.net/npm/p5@1.0.0/lib/p5.js"></script>
     <script type="text/javascript">
+
       var Ko;
-      var Ki = 120;
       var No;
+      var Ki = 120;
       var Ni = 15;
-      var alfa = .05;
+      var alfa = 0.05;
       var vm = [];
 
       function setup() {
-        // Sets the screen to be 720 pixels wide and 400 pixels high
         let graph = createCanvas(($('#chart').width()), (windowHeight * .4));
         graph.mouseClicked(actionPotential);
 
@@ -113,10 +113,10 @@
 
       function draw() {
         ion_update();
-        vm.push(vm_update());
+        vm.push( -1* (vm_update()));
 
-        translate(0, 130);
-        $('#vm-display').html((vm[vm.length - 1]).toFixed(2));
+        //Tranlates graph down allowing to view negative numbers
+        translate(0, 170);
 
         background(240);
         noFill();
@@ -129,16 +129,21 @@
 
         endShape();
 
+        //removes the last item in the vm array, gives the sentation of passing time.
         if (vm.length > width){
           vm.splice(0,1);
         }
 
         drawGrid();
         fill(0);
+
+        //Display vm on chart header
+        $('#vm-display').html(-1*(vm[vm.length - 1]).toFixed(2));
+
       }
 
       function vm_update() {
-        return (61.5 * Math.log10((Ko + (alfa * No)) / (Ki + (alfa *Ni))));
+        return (61.5 * Math.log10((Ko + (alfa * No)) / (Ki + (alfa *Ni))) );
       }
 
       function ion_update(){
@@ -165,12 +170,13 @@
       	stroke(200);
       	fill(120);
       	for (var x=-width; x < width; x+=40) {
-      		line(x+1, -height, x, height);
-      		//text(x, x+1, 12);
+      		line(x, -height, x, height);
       	}
       	for (var y=-height; y < height; y+=40) {
       		line(-width, y, width, y);
-      		text((y).toFixed(0), 1, y+12);
+
+          //*-1 inverts the y corditanes on p5 graph
+      		text((-y).toFixed(0), 1, y);
       	}
       }
 
