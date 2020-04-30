@@ -45,7 +45,7 @@
   }
 
   function vm_update() {
-    return (61.5 * Math.log10((Ko + (alfa * No)) / (Ki + (alfa *Ni))) );
+    return 61.5 * Math.log10((parseInt(Ko) + alfa * parseInt(No, 10)) / (Ki + alfa * Ni));
   }
 
   function ion_update(){
