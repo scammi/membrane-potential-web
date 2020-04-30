@@ -52,12 +52,14 @@
   </style>
   <body>
     <!-- As a heading -->
-    <nav class="navbar navbar-light shadow-sm bg-white rounded" >
-        <div class="navbar-header">
+      <ul class="nav navbar-light shadow-sm bg-white">
+        <div class="navbar-header ml-2">
           <span class="navbar-brand mb-0 h1">MpSim</span>
-
         </div>
-    </nav>
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.santiagocammi.com/posts/potential-simulatiton/">About</a>
+        </li>
+      </ul>
       <div class="container-fluid">
         <div class="row justify-content-center">
           <div class="card mt-4 shadow rounded">
@@ -145,7 +147,7 @@
       function vm_update() {
         return 61.5 * Math.log10((parseInt(Ko) + alfa * parseInt(No, 10)) / (Ki + alfa * Ni));
       }
-      
+
       function ion_update(){
         Ko = $('#ko-ranger').val();
         $('#ko-val').html(Ko);
